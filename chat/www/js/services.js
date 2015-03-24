@@ -1,11 +1,11 @@
 angular.module('starter.services', ["LocalStorageModule"])
 
-  .factory('Agenda', function($http){
+  .factory('Agenda', function($http, store){
     var contactos = [];
     var agenda = {};
 
     agenda.agregar = function(nuevoContacto){
-      nuevoContacto.propietario = "jose@gmail.com";
+      nuevoContacto.propietario = store.get('correo');
       $http.post('http://localhost:5000/api/agenda', nuevoContacto)
         .success(function(data){
           console.log('agrego contacto');
@@ -28,7 +28,7 @@ angular.module('starter.services', ["LocalStorageModule"])
     };
 
     agenda.eliminarContacto = function(item){
-      $http.delete('http://localhost:5000/api/agenda/jose@gmail.com/'+item.correo)
+      $http.delete('http://localhost:5000/api/agenda/'+store.get('correo')+'/'+item.correo)
         .success(function(data){
           console.log('eliminando un contacto');
           console.log(data);
@@ -57,7 +57,7 @@ angular.module('starter.services', ["LocalStorageModule"])
        };
 
        chats.listarMensajes = function(contacto){
-        $http.get('http://localhost:5000/api/chats/'+USER.correo+'/'+contacto.correo)
+        $http.get('http://localhost:5000/api/chats/'+store.get('correo')+'/'+contacto.correo)
           .success(function(chat){
             mensajes = chat;
           })
