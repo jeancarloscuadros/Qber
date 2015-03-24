@@ -178,6 +178,7 @@ $scope.nuevo2 = {};
 })
 
 .controller('ContactsCtrl', function($scope, $http, $ionicModal, Agenda, historialChat, store) {
+
   $scope.contactos = [];
   $scope.nuevoContacto = {};
   $scope.nuevo = {};
@@ -186,7 +187,9 @@ $scope.nuevo2 = {};
 /*--------------  HTTP conexion con el webService  --------------*/
     console.log('cargando contactos del service');
 
+
     $http.get('http://localhost:5000/api/agenda/'+store.get('correo'))
+
         .success(function(listaContactos){
           console.log(listaContactos);
           $scope.contactos = listaContactos;        
@@ -254,6 +257,7 @@ $scope.nuevo2 = {};
 
     $scope.abrirChat = function(destinatario){
 
+
       console.log(destinatario);
       $scope.modal4.show();
       $scope.destinatario.nombre = destinatario.nombre;
@@ -282,7 +286,7 @@ $scope.nuevo2 = {};
    
     $scope.TextoMsj = 'SE BORRA';
 
-    historialChat.agregarChat($scope.mensajefinal);
+    historialChat.subirMensaje($scope.mensajefinal);
   };
 })
 
@@ -301,13 +305,14 @@ $scope.nuevo2 = {};
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams) {
-//  $scope.chat = Chats.get($stateParams.chatId);
+  //$scope.correo = Chats.get($stateParams.destinatario);
+//$scope.correo = Chats.listarMensajes($stateParams.);
+
+
 })
 
 .controller('perfilCtrl', function($scope, $http, store) {
            $scope.foto = 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg';
-
-            console.log('entrando a perfil... datos: Nombre:'+store.get('nombre')+' Correo: '+store.get('correo'));
              $scope.status = store.get('estado');
              $scope.nombre = store.get('nombre');
              $scope.settings ={enableFriends: true};
@@ -333,5 +338,4 @@ $scope.nuevo2 = {};
       $state.go('inicio');
     };
 });
-
 

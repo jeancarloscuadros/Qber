@@ -4,7 +4,16 @@
       
       <button class="button button-clear" ng-click="cerrarModal(4)">X</button>   
     </ion-header-bar>
+    <ion-content>
 
+  
+    <div class="chat-bubble2"  style="bottom:-250px; margin-right:20px;">
+      
+     {{mensajefinal.mensaje}} <div class="chat-bubble-arrow-border2"></div>   <div class="chat-bubble-arrow2"></div> </div>
+
+    </div>
+
+</ion-content>
     <form name="sendMessageForm" ng-submit="agregarChat(sendMessageForm)" novalidate>
               <ion-footer-bar class="bar-stable item-input-inset bar-footer" keyboard-attach>
                   <label class="item-input-wrapper">

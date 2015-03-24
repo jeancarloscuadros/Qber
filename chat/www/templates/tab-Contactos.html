@@ -10,8 +10,6 @@
           </div>
 
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="c in contactos | filter: busqueda | orderBy: 'nombre' " type="item-text-wrap">
-        <!-- <img ng-src="{{c.imagen}}"> -->
-
 
         <h2><strong>{{c.nombre}} - </strong>{{c.estado}}</h2>
         <p>{{c.correo}}</p>
